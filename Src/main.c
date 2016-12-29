@@ -49,6 +49,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "led.h"
+#include "slcan.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -68,7 +69,7 @@ void Error_Handler(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+volatile int i=0;
 /* USER CODE END 0 */
 
 int main(void)
@@ -92,7 +93,24 @@ int main(void)
   MX_USB_DEVICE_Init();
 
   /* USER CODE BEGIN 2 */
+  can_init();
 
+  // turn on green LED
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
+
+  // blink red LED for test
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
+  HAL_Delay(100);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
+  HAL_Delay(100);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
+  HAL_Delay(100);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
+
+  // loop forever
+  CanRxMsgTypeDef rx_msg;
+  uint32_t status;
+  uint8_t msg_buf[SLCAN_MTU];
   /* USER CODE END 2 */
 
   /* Infinite loop */

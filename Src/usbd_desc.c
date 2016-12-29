@@ -76,7 +76,14 @@
 #define USBD_INTERFACE_STRING_FS     "CDC Interface"
 
 /* USER CODE BEGIN 0 */
+#define STRINGIZE_(x) #x
+#define STRINGIZE(x) STRINGIZE_(x)
 
+#if CANTACT_BUILD_NUMBER == 0
+    #define CANTACT_SW_VER      "dev"
+#else
+    #define CANTACT_SW_VER      "b" STRINGIZE(CANTACT_BUILD_NUMBER)
+#endif
 /* USER CODE END 0*/
 /**
   * @}

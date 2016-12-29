@@ -55,7 +55,7 @@ PCD_HandleTypeDef hpcd_USB_FS;
 void Error_Handler(void);
 
 /* USER CODE BEGIN 0 */
-
+__IO uint32_t remotewakeupon=0;
 /* USER CODE END 0 */
 
 /* Private function prototypes -----------------------------------------------*/

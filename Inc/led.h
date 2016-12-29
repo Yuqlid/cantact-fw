@@ -19,10 +19,13 @@ typedef enum
   LED_MAX
 } Led_TypeDef;
 
-void led_on(Led_TypeDef led);
+#define LED_DURATION 50
+
+//void led_on(Led_TypeDef led);
 void led_off(Led_TypeDef led);
 void led_toggle(Led_TypeDef led);
-
+void led_process(void);
+void led_on(void);
 #ifdef __cplusplus
 }
 #endif
